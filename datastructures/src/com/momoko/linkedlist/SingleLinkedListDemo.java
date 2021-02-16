@@ -21,6 +21,8 @@ public class SingleLinkedListDemo {
         singleLikedList.addByOrder(hero4);
         singleLikedList.list();
 
+
+
 //        //修改节点
 //        HeroNode heroL = new HeroNode(5, "小卢", "玉麒麟~~");
 //        singleLikedList.update(heroL);
