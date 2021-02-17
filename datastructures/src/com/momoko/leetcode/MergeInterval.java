@@ -6,6 +6,7 @@ import java.util.Comparator;
 
 /**
  * Created by momoko on 2021/2/14.
+ * 合并数组的区间
  */
 public class MergeInterval {
     public int[][] mergeInterval(int[][] intervals) {
