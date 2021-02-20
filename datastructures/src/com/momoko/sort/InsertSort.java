@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 /**
  * Created by momoko on 2021/2/16.
+ * 插入排序
  */
 public class InsertSort {
     public static void main(String[] args) {
