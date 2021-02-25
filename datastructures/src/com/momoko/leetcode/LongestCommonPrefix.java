@@ -36,7 +36,7 @@ public class LongestCommonPrefix {
 
         String s = longestCommonPrefix(strs);
         System.out.println(s);
-        s.startsWith()
+        s.startsWith(str);
 
 
     }
