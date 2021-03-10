@@ -1,20 +1,33 @@
 package com.momoko.stack;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
 /**
  * Created by momoko on 2021/2/6.
  * 中缀表达式的计算
  * 只能接收正常的输入，暂时没有加入检测功能
  * 加入括号的中缀表达式计算
  * 思路：括号的优先级最高，遇到右括号则计算到左括号为止
+ * 可以处理第一个数为负数的情况，中间有负数不可以
  */
 
 public class Calculator2 {
     public static void main(String[] args) {
-        //完成计算器操作
-        String expression = "5*(83-3)+4/2";
+        Calculator2 calcul = new Calculator2();
+        int calculate = calcul.calculate("(1+(2+3)+(6+8))");
+        System.out.println(calculate);
+        List<Integer> list = new ArrayList<>();
+    }
+
+    public int calculate(String s) {
+        String expression = s.replaceAll(" +", "");
         //创建两个栈，一个数栈，一个符号栈
-        ArrayStack3 numStack = new ArrayStack3(10);
-        ArrayStack3 operStack = new ArrayStack3(10);
+        Stack<Integer> numStack = new Stack<>();
+        //防止第一个元素为负数
+        numStack.push(0);
+        Stack<Character> operStack = new Stack<>();
         //定义需要的相关变量
         int index = 0;
         int num1 = 0;
@@ -27,7 +40,7 @@ public class Calculator2 {
             //依次得到expression的每一个字符
             ch = expression.charAt(index);
             //判断ch是什么，然后做相应的处理
-            if (operStack.isOper(ch)) {
+            if (isOper(ch)) {
                 //判断当前的符号栈是否为空
                 if (!operStack.isEmpty()) {
                     //判断是否为左括号或者右括号
@@ -35,10 +48,10 @@ public class Calculator2 {
                         operStack.push(ch);
                     } else if (ch == ')') {
                         //如果为右括号，则循环计算到第一个左括号为止
-                        while((oper = operStack.pop()) != '(') {
+                        while ((oper = operStack.pop()) != '(') {
                             num1 = numStack.pop();
                             num2 = numStack.pop();
-                            res = numStack.cal(num1, num2, oper);
+                            res = cal(num1, num2, oper);
                             //把运算的结果push进数栈
                             numStack.push(res);
                         }
@@ -48,12 +61,13 @@ public class Calculator2 {
                         if (top == '(') {
                             operStack.push(ch);
                         } else {
-                            if (operStack.priority(ch) <= operStack.priority(top)) {
+
+                            if (priority(ch) <= priority(top)) {
                                 //1.如果当前符号的优先级小于或等于栈顶符号的优先级，则从符号栈中取出栈顶符号，数据栈中取出两个数进行运算，将运算结果存入数栈，当前符号入符号栈
                                 oper = operStack.pop();
                                 num1 = numStack.pop();
                                 num2 = numStack.pop();
-                                res = numStack.cal(num1, num2, oper);
+                                res = cal(num1, num2, oper);
                                 //把运算的结果push进数栈
                                 numStack.push(res);
                                 //当前符号入符号栈
@@ -76,7 +90,7 @@ public class Calculator2 {
                     numStack.push(Integer.parseInt(keepNum));
                 } else {
                     //判断下一个字符是不是操作符
-                    if (operStack.isOper(expression.charAt(index + 1))) {
+                    if (isOper(expression.charAt(index + 1))) {
                         //如果是操作符，则入栈
                         numStack.push(Integer.parseInt(keepNum));
                         keepNum = "";
@@ -99,72 +113,13 @@ public class Calculator2 {
             oper = operStack.pop();
             num1 = numStack.pop();
             num2 = numStack.pop();
-            res = numStack.cal(num1, num2, oper);
+            res = cal(num1, num2, oper);
             //把运算的结果push进数栈
             numStack.push(res);
         }
-        System.out.printf("表达式 %s = %d",expression,numStack.pop());
-
+//        System.out.printf("表达式 %s = %d", expression, numStack.pop());
+        return numStack.pop();
     }
-}
-
-class ArrayStack3 {
-    private int maxSize;   //栈的大小
-    private int[] stack;   //数组模拟栈
-    private int top = -1;  //top表示栈顶
-
-    public ArrayStack3(int maxSize) {
-        this.maxSize = maxSize;
-        stack = new int[this.maxSize];
-    }
-
-    //判断是否栈满
-    public boolean isFull() {
-        return top == maxSize - 1;
-    }
-
-    //栈空
-    public boolean isEmpty() {
-        return top == -1;
-    }
-
-    //入栈
-    public void push(int value) {
-        //先判断栈是否满
-        if (isFull()) {
-            System.out.println("栈已经满了");
-            return;
-        }
-        stack[++top] = value;
-    }
-
-    //出栈
-    public int pop() {
-        //先判断是否栈空
-        if (isEmpty()) {
-            throw new RuntimeException("栈空，没有数据");
-        }
-        return stack[top--];
-    }
-
-    //遍历栈
-    public void list() {
-        if (isEmpty()) {
-            System.out.println("栈空，没有数据");
-        }
-        for (int i = top; i >= 0; i--) {
-            System.out.println(stack[i]);
-        }
-    }
-    //查看栈顶
-
-    public int peek() {
-        if (isEmpty()) {
-            throw new RuntimeException("栈空，没有数据");
-        }
-        return stack[top];
-    }
-
     //数字越大，则优先级就越高
     public int priority(int oper) {
         if (oper == '*' || oper == '/') {
@@ -176,10 +131,6 @@ class ArrayStack3 {
         }
     }
 
-    //判断是否为(
-    public boolean isLeftBracket(char val) {
-        return val == '(';
-    }
     //判断是不是一个运算符
     public boolean isOper(char val) {
         return val == '+' || val == '-' || val == '*' || val == '/' || val == '(' || val == ')';
@@ -205,6 +156,8 @@ class ArrayStack3 {
         }
         return res;
     }
+
+
 }
 
 

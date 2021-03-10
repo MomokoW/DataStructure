@@ -1,12 +1,9 @@
 package com.momoko.stack;
 
 /**
- * Created by momoko on 2021/2/6.
- * 中缀表达式的计算
- * 只能接收正常的输入，暂时没有加入检测功能
+ * Created by momoko on 2021/2/7.
  */
-
-public class Calculator {
+public class Calculator3 {
     public static void main(String[] args) {
         //完成计算器操作
         String expression = "282-1*2*13-30-2*2*2/2-95/5*2+55+804+3024";
@@ -26,7 +23,7 @@ public class Calculator {
             //依次得到expression的每一个字符
             ch = expression.charAt(index);
             //判断ch是什么，然后做相应的处理
-             if (operStack.isOper(ch)) {
+            if (operStack.isOper(ch)) {
                 //判断当前的符号栈是否为空
                 if (!operStack.isEmpty()) {
                     //如果符号栈不为空则需要判断栈顶符号和当前符号的优先级，始终保证当前栈顶符号的优先级最低
@@ -112,12 +109,12 @@ public class Calculator {
     }
 }
 
-class ArrayStack2 {
+class ArrayStack4 {
     private int maxSize;   //栈的大小
     private int[] stack;   //数组模拟栈
     private int top = -1;  //top表示栈顶
 
-    public ArrayStack2(int maxSize) {
+    public ArrayStack4(int maxSize) {
         this.maxSize = maxSize;
         stack = new int[this.maxSize];
     }
@@ -207,7 +204,3 @@ class ArrayStack2 {
         return res;
     }
 }
-
-
-
-
