@@ -16,7 +16,7 @@ import java.util.Stack;
 public class Calculator2 {
     public static void main(String[] args) {
         Calculator2 calcul = new Calculator2();
-        int calculate = calcul.calculate("(1+(2+3)+(6+8))");
+        int calculate = calcul.calculate("1*2-3/4+5*6-7*8+9/10");
         System.out.println(calculate);
         List<Integer> list = new ArrayList<>();
     }
