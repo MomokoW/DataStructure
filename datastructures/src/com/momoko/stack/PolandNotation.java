@@ -21,6 +21,11 @@ public class PolandNotation {
         int res = calculate(suffixExpression);
         System.out.printf("%s = %d",suffixExpression,res);
 
+        String[] tokens = {"10","6","9","3","+","-11","*","/","*","17","+","5","+"};
+        List<String> list1 = Arrays.asList(tokens);
+        int res1 = calculate(list1);
+        System.out.println(res1);
+
 
     }
     //将中缀表达式转成对应的list
@@ -66,7 +71,7 @@ public class PolandNotation {
         //创建一个栈存放数据
         Stack<String> stack = new Stack<>();
         for (String item : ls) {
-            if (item.matches("\\d+")) {
+            if (item.matches("-?\\d+")) {
                 //匹配数字，入栈
                 stack.push(item);
             } else {
