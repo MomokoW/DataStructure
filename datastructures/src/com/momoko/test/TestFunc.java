@@ -10,6 +10,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Deque;
+import java.util.Scanner;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Hashtable;
@@ -29,21 +30,14 @@ import java.util.stream.IntStream;
 public class TestFunc {
 
     public static void main(String[] args) {
-        String s = "abcde";
+        StringBuilder sb = new StringBuilder();
+        sb.append("123456");
+        sb.delete(sb.length() - 1, sb.length());
+        System.out.println(sb);
         Set<String> set = new HashSet<>();
-
-        for (int i = s.length(); i > 0; i--) {
-            System.out.println(s.substring(0, i));
-        }
-
-
-        char[] arr = new char[3];
-
-        try {
-            Integer.parseInt(String.valueOf(arr));
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
+        char[] ch = {'a','b','c'};
+        List<Integer> list = new ArrayList<>();
+        List<Integer> list1 = new ArrayList<>(list);
 
     }
 
@@ -57,5 +51,32 @@ public class TestFunc {
             n >>= 1;
         }
         return count;
+    }
+
+    public int maxResult(int[] nums, int k) { // 贪心
+        int res = 0;
+        int cur = 0;
+        int n = nums.length;
+        while (cur < n) {
+            int min = Integer.MIN_VALUE;
+            int minIndex = Integer.MIN_VALUE;
+            int len = Math.min(cur + k - 1, n - 1);
+            for (int i = cur; i <= len; i++) {
+                if (nums[i] >= 0) {
+                    min = nums[i];
+                    minIndex = i;
+                    break;
+                } else {
+                    if (nums[i] >= min) {
+                        min = nums[i];
+                        minIndex = i;
+                    }
+                }
+            }
+            res += min;
+            cur = minIndex;
+            cur++;
+        }
+        return res;
     }
 }
