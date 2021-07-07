@@ -3,25 +3,8 @@ package com.momoko.test;
 import com.momoko.linkedlist.ListNode;
 
 import java.lang.reflect.Array;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Deque;
+import java.util.*;
 import java.util.Scanner;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Hashtable;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.PriorityQueue;
-import java.util.Queue;
-import java.util.Random;
-import java.util.Scanner;
-import java.util.Set;
 import java.util.stream.IntStream;
 
 /**
@@ -30,15 +13,15 @@ import java.util.stream.IntStream;
 public class TestFunc {
 
     public static void main(String[] args) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("123456");
-        sb.delete(sb.length() - 1, sb.length());
-        System.out.println(sb);
-        Set<String> set = new HashSet<>();
-        char[] ch = {'a','b','c'};
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
         List<Integer> list = new ArrayList<>();
-        List<Integer> list1 = new ArrayList<>(list);
-
+//        while (sc.hasNextLine()) {
+//            list.add(sc.nextInt());
+//        }
+        String s = "";
+        System.out.println(s.length());
+        
     }
 
 
