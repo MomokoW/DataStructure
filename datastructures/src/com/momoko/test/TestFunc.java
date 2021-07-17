@@ -13,15 +13,6 @@ import java.util.stream.IntStream;
 public class TestFunc {
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt();
-        List<Integer> list = new ArrayList<>();
-//        while (sc.hasNextLine()) {
-//            list.add(sc.nextInt());
-//        }
-        String s = "";
-        System.out.println(s.length());
-        
     }
 
 
