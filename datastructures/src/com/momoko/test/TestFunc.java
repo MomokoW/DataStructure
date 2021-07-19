@@ -13,6 +13,17 @@ import java.util.stream.IntStream;
 public class TestFunc {
 
     public static void main(String[] args) {
+        String s1 = "abcde";
+        String s2 = "abcdf";
+        System.out.println(s2.compareTo(s1));
+        List<String> dict = new ArrayList<>();
+        dict.sort((o1, o2) -> {
+            if (o1.length() == o2.length()) {
+                return o1.compareTo(o2);
+            } else {
+                return o2.length() - o1.length();
+            }
+        });
     }
 
 
