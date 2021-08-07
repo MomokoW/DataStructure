@@ -5,6 +5,8 @@ import com.momoko.linkedlist.ListNode;
 import java.lang.reflect.Array;
 import java.util.*;
 import java.util.Scanner;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.stream.IntStream;
 
 /**
@@ -13,17 +15,41 @@ import java.util.stream.IntStream;
 public class TestFunc {
 
     public static void main(String[] args) {
-        String s1 = "abcde";
-        String s2 = "abcdf";
-        System.out.println(s2.compareTo(s1));
-        List<String> dict = new ArrayList<>();
-        dict.sort((o1, o2) -> {
-            if (o1.length() == o2.length()) {
-                return o1.compareTo(o2);
-            } else {
-                return o2.length() - o1.length();
-            }
-        });
+        int num = testTryCatch();
+        System.out.println(num);
+        Map<Integer, Integer> map = new TreeMap<>();
+        for (Map.Entry<Integer, Integer> integerIntegerEntry : map.entrySet()) {
+
+        }
+        StringBuilder sb = new StringBuilder();
+        Deque<Integer> stack = new LinkedList<>();
+        List<Integer> list = new ArrayList<>();
+        list.sort(Comparator.comparingInt(o -> o));
+
+
+    }
+
+    public static int testTryCatch() {
+
+        try {
+            int i = 1/ 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 1;
+        } finally {
+            return 2;
+        }
+    }
+
+    class Node {
+        int row;
+        int compower;
+
+        public Node(int row, int compower) {
+            this.row = row;
+            this.compower = compower;
+        }
+
     }
 
 

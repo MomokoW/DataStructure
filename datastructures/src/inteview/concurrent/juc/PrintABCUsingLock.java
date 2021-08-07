@@ -1,4 +1,4 @@
-package inteview.concurrent;
+package inteview.concurrent.juc;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;

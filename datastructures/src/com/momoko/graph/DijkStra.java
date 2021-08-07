@@ -1,4 +1,4 @@
-package com.momoko.dp;
+package com.momoko.graph;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -18,7 +18,7 @@ public class DijkStra {
                 {20,MAX,4,0,12},
                 {5,MAX,MAX,MAX,0}
         };
-        int start = 0;
+        int start = 1;
         int[] dijsktra = dijsktra(weight,start);
     }
 
@@ -37,7 +37,7 @@ public class DijkStra {
         mark[start] = 1;
         Arrays.fill(path, start);
         do {
-            k = 0;
+            k = start;
             min = Integer.MAX_VALUE;
             // 找最短路径，每次循环都找最短的路径
             for (int i = 0; i < length; i++) {
@@ -56,7 +56,7 @@ public class DijkStra {
                     }
                 }
             }
-        } while (k != 0);
+        } while (k != start);
 
         // 输出各最短路径
         for (int i = 0; i < length; i++) {

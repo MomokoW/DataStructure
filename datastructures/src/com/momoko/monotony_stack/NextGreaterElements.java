@@ -6,6 +6,7 @@ import java.util.LinkedList;
 
 /**
  * Created by momoko on 2021/3/6.
+ * 返回数组中每个数字下一个更大元素的下标，循环式的
  */
 public class NextGreaterElements {
     public static void main(String[] args) {
